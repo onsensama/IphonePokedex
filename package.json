@@ -1,0 +1,14 @@
+{
+  "name": "v-00",
+  "version": "1.0.0",
+  "description": "base folder for vanilla project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "onsensama",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.36.0"
+  }
+}
