@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VanillaJS</title>
     <link rel="stylesheet" href="/style.css" />
+    <link rel="icon" href="/assets/icons/js.svg" />
     <script src="index.js" defer></script>
   </head>
   <body>
@@ -18,8 +19,23 @@
           <div class="content-app">
             <h1 class="title-app">Pokedex 2.0</h1>
             <div class="monitor">
-              <!--         <img src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c325.png" alt="pokemon" />
-            <p>Pikachu</p> -->
+            <!-- <div class="container-pokemon-identity">
+            <div class="pokemon-identity">
+            <img src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c325.png" alt="pokemon" />
+            <p>Pikachu</p>
+            </div>
+          </div> -->
+          <div class="container-infos">
+            <h1>Pikachu</h1>
+            <h2>Type: Electic - fire</h2>
+            <ul>
+              <li>height: 11</li>
+              <li>weight: 320</li>
+            </ul>
+          </div>
+          <div class="container-img">
+          <img src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c325.png" class="pokemon-home" alt="pokemon" />
+        </div>
             </div>
             <div class="pokeball-effect">
               <div class="line-pokeball"></div>
@@ -29,7 +45,7 @@
               </div>
             </div>
     
-            <div class="controls-container">
+              <div class="controls-container">
               <div class="button-start-pokedex">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"><path fill="none" d="M0 0h24v24H0z"/><path d="M6.265 3.807l1.147 1.639a8 8 0 1 0 9.176 0l1.147-1.639A9.988 9.988 0 0 1 22 12c0 5.523-4.477 10-10 10S2 17.523 2 12a9.988 9.988 0 0 1 4.265-8.193zM11 12V2h2v10h-2z" fill="rgba(219,237,247,1)"/></svg>
               </div>
@@ -37,12 +53,12 @@
               <div class="button-details"></div>
               <div class="cross">
                 <div class="vertical-cross">
-                <div "up"></div>
-                <div "down"></div>
+                <div class="up"></div>
+                <div class="down"></div>
                 </div>
                 <div class="horizontal-cross">
-                <div "left"></div>
-                <div "right"></div>
+                <div class="left"></div>
+                <div class="right"></div>
                 </div>
               </div>
               <input class="search-pokemon"></input>
