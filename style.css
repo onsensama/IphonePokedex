@@ -165,10 +165,17 @@ body h1 {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   border-radius: 30px;
+  font-family: "5x5 Pixel", sans-serif;
 }
 
-.screen .content-app .monitor .container-infos ul {
+.screen .content-app .monitor .container-infos h1 {
+  font-size: 1rem;
+}
+
+.screen .content-app .monitor .container-infos ul,
+.screen .content-app .monitor .container-infos h2 {
   list-style: none;
+  font-size: 0.8rem;
 }
 
 .screen .content-app .monitor .container-img {

@@ -5,15 +5,15 @@ const audio = new Audio("./assets/sound/press_1.mp3");
 let pokemons = [];
 
 function getPokemonList() {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
-        .then((res) => res.json())
-        .then((allPokemons) => {
-            //console.log("test", allPokemons);
-            allPokemons.results.map((pokemon) => {
-                //console.log("01", pokemon);
-                //getPokemonInfos(pokemon);
-            });
-        });
+  fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
+    .then((res) => res.json())
+    .then((allPokemons) => {
+      //console.log("test", allPokemons);
+      allPokemons.results.map((pokemon) => {
+        //console.log("01", pokemon);
+        //getPokemonInfos(pokemon);
+      });
+    });
 }
 
 getPokemonList();
@@ -35,7 +35,7 @@ getPokemonList();
 // }
 
 searchPokemon.addEventListener("keydown", function (e) {
-    audio.pause();
-    audio.currentTime = 0;
-    audio.play();
+  audio.pause();
+  audio.currentTime = 0;
+  audio.play();
 });
