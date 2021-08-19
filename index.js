@@ -1,40 +1,66 @@
-const searchPokemon = document.querySelector(".search-pokemon");
+let allPokemonInfo = [];
+let allPokemonInfoSort = [];
+const listPokemon = document.querySelector(".list-pokemon");
+
+const pokeSearch = document.querySelector(".search-pokemon");
 const audio = new Audio("./assets/sound/press_1.mp3");
-//document.getElementById();
 
-let pokemons = [];
-
-function getPokemonList() {
+function fetchPokemonData() {
   fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
     .then((res) => res.json())
-    .then((allPokemons) => {
-      //console.log("test", allPokemons);
-      allPokemons.results.map((pokemon) => {
-        //console.log("01", pokemon);
-        //getPokemonInfos(pokemon);
-      });
+    .then((pokemons) => {
+      pokemons.results.map((pokemon) => getPokemonData(pokemon));
+    });
+}
+fetchPokemonData();
+
+function getPokemonData(pokemon) {
+  let pokemonInfo = {
+    name: pokemon.name,
+    img: "",
+    type: "",
+  };
+
+  let url = pokemon.url;
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((pokemonData) => {
+      pokemonInfo.img = pokemonData.sprites.front_default;
+      pokemonInfo.type = pokemonData.types[0].type.name;
+      pokemonInfo.id = pokemonData.id;
+      allPokemonInfo.push(pokemonInfo);
+
+      if (allPokemonInfo.length === 151) {
+        allPokemonInfoSort = allPokemonInfo
+          .sort((a, b) => {
+            return a.id - b.id;
+          })
+          .slice(0, 6);
+
+        //console.log(allPokemonInfoSort);
+        createItemList(allPokemonInfoSort);
+      }
     });
 }
 
-getPokemonList();
+function createItemList(pokemonsInfos) {
+  for (let i = 0; i < pokemonsInfos.length; i++) {
+    const itemList = document.createElement("div");
+    itemList.classList.add("item-list-pokemon");
+    const textItem = document.createElement("p");
+    textItem.innerText = pokemonsInfos[i].name;
+    const imgItem = document.createElement("img");
+    imgItem.src = pokemonsInfos[i].img || "";
 
-// function getPokemonInfos(pokemon) {
-//   let pokemonInfos = {};
-//   let name = pokemon.name;
-//   let url = pokemon.url;
+    itemList.appendChild(textItem);
+    itemList.appendChild(imgItem);
 
-//   fetch(url)
-//     .then((res) => res.json())
-//     .then((pokemonDatas) => {
-//       pokemonInfos.name = name;
-//       pokemonInfos.img = pokemonDatas.sprites.front_default;
-//       allPokemons.push(pokemonInfos);
-//     });
+    listPokemon.appendChild(itemList);
+  }
+}
 
-//   console.log("all", pokemons);
-// }
-
-searchPokemon.addEventListener("keydown", function (e) {
+pokeSearch.addEventListener("keydown", function (e) {
   audio.pause();
   audio.currentTime = 0;
   audio.play();

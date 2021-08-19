@@ -1,3 +1,11 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 @font-face {
   font-family: "Montserrat";
   src: url("/fonts/Montserrat-Regular.ttf") format("ttf"),
@@ -28,16 +36,16 @@ body {
 }
 
 .screen {
-  padding: 3vh;
+  padding: 2vh;
   background-color: #e8edf3;
   border: solid 1px rgba(63, 91, 102, 0.5);
   grid-area: 1 / 1;
   display: grid;
-  grid-template-rows: 1fr 1fr 844px 1fr 1fr;
+  grid-template-rows: auto auto 844px auto auto;
   grid-template-columns: 1fr 390px 1fr;
 
   .title-website {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 400;
     color: #3f5b66;
     opacity: 40%;
@@ -56,6 +64,7 @@ body {
     color: #3f5b66;
     font-size: 0.7rem;
     opacity: 25%;
+    padding-top: 10px;
   }
 
   /**************** CONTAINER GLOBAL ****************/
@@ -85,29 +94,29 @@ body {
     grid-area: 2 / 1;
     display: grid;
     grid-template:
-      auto 300px 58px 165px
+      auto 330px 58px 165px
       / 35px 1fr 35px;
     grid-row-gap: 40px;
 
     .title-app {
       grid-area: 1 / 2;
       text-align: center;
-      font-size: 2rem;
-      color: white;
-      font-family: "eviolite-b", sans-serif;
+      font-size: 1.2rem;
+      color: #36333a;
+      font-family: "5x5 pixel", sans-serif;
     }
 
     .monitor {
       background: #232326;
-      border: 9px solid #36333a;
+      border: 8px solid #e1f1f93d;
       grid-area: 2 / 2;
       border-radius: 50px;
       display: grid;
       grid-template: 1fr / 1fr;
-      padding: 38px 0;
+      padding: 36px 0;
       position: relative;
 
-      .container-pokemon-identity::-webkit-scrollbar {
+      .list-pokemon::-webkit-scrollbar {
         display: none; /* Safari and Chrome */
       }
 
@@ -144,7 +153,7 @@ body {
         }
       }
 
-      .container-img {
+      .container-img-pokemon {
         display: grid;
         place-content: center;
 
@@ -153,13 +162,13 @@ body {
         }
       }
 
-      .container-pokemon-identity {
+      .list-pokemon {
         overflow: scroll;
         overflow-x: hidden;
         -ms-overflow-style: none; /* Internet Explorer 10+ */
         scrollbar-width: none; /* Firefox */
 
-        .pokemon-identity {
+        .item-list-pokemon {
           padding: 5px 0;
           display: grid;
           grid-template: auto / 40px 1fr 30px 40px;
@@ -168,9 +177,19 @@ body {
           border-bottom: #435158 solid 1px;
         }
 
-        .pokemon-identity:hover {
-          background-color: #161618;
+        .item-list-pokemon:hover,
+        .item-list-pokemon.is-active,
+        .active {
+          background-color: #d35d5d;
         }
+
+        .item-list-pokemon.not-active {
+          background-color: #fff;
+        }
+
+        // .item-list-pokemon:nth-of-type(1) {
+        //   background-color: #161618;
+        // }
 
         p {
           grid-area: 1 / 2;
@@ -203,7 +222,7 @@ body {
         grid-area: 1 / 2 / 4 / 3;
         border-radius: 100%;
         display: grid;
-        grid-template: 1fr 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr 1fr;
+        grid-template: repeat(5, 1fr) / repeat(5, 1fr);
 
         .intern-cercle-pokeball {
           grid-area: 2 / 2 / 5 / 5;
@@ -217,16 +236,13 @@ body {
     .controls-container {
       grid-area: 4 / 2 / 5 / 3;
       display: grid;
-      grid-template: 6px 19px 19px 20px 48px 20px 1fr / 38px 65px 30px 10px 30px 10px 85px;
+      grid-template: 27px 40px 20px 65px 27px / 40px 1fr 55px 14px 55px 85px;
       grid-template-areas:
-        ". . button-sound . button-details . ."
-        "button-start-pokedex . . . . . ."
-        "button-start-pokedex . . . . . ."
-        ". . . . . . cross"
-        "search-pokemon search-pokemon search-pokemon search-pokemon . . cross"
-        "search-pokemon search-pokemon search-pokemon search-pokemon . . cross"
-        "search-pokemon search-pokemon search-pokemon search-pokemon . . .";
-      grid-column-gap: 6px;
+        ". . button-back . button-enter ."
+        "button-start-pokedex . . . . ."
+        ". . . . . cross"
+        "search-pokemon search-pokemon search-pokemon search-pokemon . cross"
+        "search-pokemon search-pokemon search-pokemon search-pokemon . .";
 
       .button-start-pokedex {
         grid-area: button-start-pokedex;
@@ -236,16 +252,26 @@ body {
         place-content: center;
       }
 
-      .button-sound {
-        grid-area: button-sound;
+      .button-back,
+      .button-enter {
         background-color: #36333a;
-        border-radius: 15px;
+        border-radius: 8px;
+        color: #e8edf3;
+        font-size: 0.6rem;
+        font-weight: bolder;
+        text-align: center;
+        text-transform: uppercase;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 25px;
       }
 
-      .button-details {
-        grid-area: button-details;
-        background-color: #36333a;
-        border-radius: 15px;
+      .button-back {
+        grid-area: button-back;
+      }
+
+      .button-enter {
+        grid-area: button-enter;
       }
 
       .search-pokemon {
@@ -268,12 +294,12 @@ body {
         .vertical-cross {
           grid-area: 1 / 4 / -1 / 7;
           background-color: #36333a;
-          border-radius: 5px;
+          border-radius: 8px;
         }
         .horizontal-cross {
           grid-area: 4 / 1 / 7 / -1;
           background-color: #36333a;
-          border-radius: 5px;
+          border-radius: 8px;
         }
       }
     }
