@@ -19,6 +19,7 @@ function getPokemonData(pokemon) {
     name: pokemon.name,
     img: "",
     type: "",
+    id: "",
   };
 
   let url = pokemon.url;
@@ -32,13 +33,10 @@ function getPokemonData(pokemon) {
       allPokemonInfo.push(pokemonInfo);
 
       if (allPokemonInfo.length === 151) {
-        allPokemonInfoSort = allPokemonInfo
-          .sort((a, b) => {
-            return a.id - b.id;
-          })
-          .slice(0, 6);
+        allPokemonInfoSort = allPokemonInfo.sort((a, b) => {
+          return a.id - b.id;
+        });
 
-        //console.log(allPokemonInfoSort);
         createItemList(allPokemonInfoSort);
       }
     });
@@ -52,13 +50,51 @@ function createItemList(pokemonsInfos) {
     textItem.innerText = pokemonsInfos[i].name;
     const imgItem = document.createElement("img");
     imgItem.src = pokemonsInfos[i].img || "";
+    itemList.id = pokemonsInfos[i].id;
 
     itemList.appendChild(textItem);
     itemList.appendChild(imgItem);
 
     listPokemon.appendChild(itemList);
+
+    const firstItem = document.querySelector(".item-list-pokemon");
+    firstItem.classList.add("active");
+
+    itemList.addEventListener("click", function (e) {
+      const elems = document.querySelector(".active");
+      if (elems !== null) {
+        elems.classList.remove("active");
+      }
+      e.currentTarget.classList.add("active");
+    });
   }
 }
+
+document.addEventListener("keydown", function (e) {
+  const elems = document.querySelector(".active");
+  listPokemon.focus();
+  if (e.key === "ArrowDown") {
+    console.log(e);
+    if (elems !== null) {
+      const nextItem = document.getElementById(Number(elems.id) + 1);
+      if (nextItem !== null) {
+        elems.classList.remove("active");
+        nextItem.classList.add("active");
+        listPokemon.focus();
+      }
+    }
+  }
+  if (e.key === "ArrowUp") {
+    if (elems !== null) {
+      const nextItem = document.getElementById(Number(elems.id) - 1);
+      if (nextItem !== null) {
+        elems.classList.remove("active");
+        nextItem.classList.add("active");
+        nextItem.focus();
+      }
+    }
+  }
+});
 
 pokeSearch.addEventListener("keydown", function (e) {
   audio.pause();

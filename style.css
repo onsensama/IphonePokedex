@@ -8,6 +8,10 @@
   padding: 0;
 }
 
+.hide {
+  display: none;
+}
+
 @font-face {
   font-family: "Montserrat";
   src: url("/fonts/Montserrat-Regular.ttf") format("ttf"), url("/fonts/5x5_pixel.ttf") format("ttf"), url("http://fonts.cdnfonts.com/css/eviolite-b") format("ttf");
@@ -24,7 +28,7 @@ html {
 
 body {
   margin: 0;
-  padding: 3vh;
+  padding: 2vh;
   height: 93.5vh;
   background-color: #e8edf3;
   display: -ms-grid;
@@ -163,6 +167,10 @@ body h1 {
 .screen .content-app .monitor .list-pokemon::-webkit-scrollbar {
   display: none;
   /* Safari and Chrome */
+}
+
+.screen .content-app .monitor .list-pokemon:focus {
+  visibility: hidden;
 }
 
 .screen .content-app .monitor .container-infos {

@@ -6,6 +6,10 @@
   padding: 0;
 }
 
+.hide {
+  display: none;
+}
+
 @font-face {
   font-family: "Montserrat";
   src: url("/fonts/Montserrat-Regular.ttf") format("ttf"),
@@ -21,7 +25,7 @@ html {
 
 body {
   margin: 0;
-  padding: 3vh;
+  padding: 2vh;
   height: 93.5vh;
   background-color: #e8edf3;
   display: grid;
@@ -118,6 +122,10 @@ body {
 
       .list-pokemon::-webkit-scrollbar {
         display: none; /* Safari and Chrome */
+      }
+
+      .list-pokemon:focus {
+        visibility: hidden;
       }
 
       .container-infos {
