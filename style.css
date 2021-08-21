@@ -173,57 +173,35 @@ body h1 {
   visibility: hidden;
 }
 
-.screen .content-app .monitor .container-infos {
-  background: rgba(22, 22, 24, 0.5);
-  position: absolute;
-  height: 265px;
-  width: 265px;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  border-radius: 30px;
-  font-family: "5x5 Pixel", sans-serif;
-  color: white;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-rows: 40px auto 10px auto 20px auto 1fr;
-  -ms-grid-columns: 20px auto;
-      grid-template: 40px auto 10px auto 20px auto 1fr / 20px auto;
-}
-
-.screen .content-app .monitor .container-infos h1 {
-  font-size: 1rem;
-  -ms-grid-row: 2;
-  -ms-grid-column: 2;
-  grid-area: 2 / 2;
-}
-
-.screen .content-app .monitor .container-infos h2 {
-  -ms-grid-row: 4;
-  -ms-grid-column: 2;
-  grid-area: 4 / 2;
-  font-size: 0.8rem;
-}
-
-.screen .content-app .monitor .container-infos ul {
-  list-style: none;
-  font-size: 0.8rem;
-  -ms-grid-row: 6;
-  -ms-grid-column: 2;
-  grid-area: 6 / 2;
-  padding: 0;
-  margin: 0;
-}
-
-.screen .content-app .monitor .container-img-pokemon {
+.screen .content-app .monitor .container-pokemon {
   display: -ms-grid;
   display: grid;
   place-content: center;
+  font-family: "5x5 pixel", sans-serif;
+  color: white;
+  text-align: center;
+  line-height: 1.1;
 }
 
-.screen .content-app .monitor .container-img-pokemon .pokemon-home {
+.screen .content-app .monitor .container-pokemon .pokemon-home {
   max-width: 125px;
+}
+
+.screen .content-app .monitor .container-pokemon img {
+  margin-bottom: 10px;
+}
+
+.screen .content-app .monitor .container-pokemon .info-pokemon-profil {
+  margin-top: 10px;
+}
+
+.screen .content-app .monitor .container-pokemon h2,
+.screen .content-app .monitor .container-pokemon h3 {
+  font-size: 0.8rem;
+}
+
+.screen .content-app .monitor .container-pokemon h3 {
+  color: #ffd823;
 }
 
 .screen .content-app .monitor .list-pokemon {
@@ -254,10 +232,7 @@ body h1 {
 .screen .content-app .monitor .list-pokemon .item-list-pokemon.is-active,
 .screen .content-app .monitor .list-pokemon .active {
   background-color: #d35d5d;
-}
-
-.screen .content-app .monitor .list-pokemon .item-list-pokemon.not-active {
-  background-color: #fff;
+  outline: none;
 }
 
 .screen .content-app .monitor .list-pokemon p {
@@ -268,6 +243,7 @@ body h1 {
   color: white;
   font-family: "5x5 Pixel", sans-serif;
   font-size: 0.8rem;
+  word-spacing: 5px;
 }
 
 .screen .content-app .monitor .list-pokemon img {
@@ -320,9 +296,19 @@ body h1 {
   -ms-grid-column-span: 3;
   grid-area: 2 / 2 / 5 / 5;
   border-radius: 100%;
-  border: solid 6px #d2e8f5;
+  border: solid 4px #fff;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+}
+
+.screen .content-app .pokeball-effect .cercle-pokeball .light-cercle-pokeball {
+  border: 6px solid #359de8;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: 0px 0px 20px #00ffd1, 0px 0px 5px #ffffff, 0px 0px 10px #00ffd1, 0px 0px 10px #00ffd1, 0px 0px 10px #00ffd1, 0px 0px 10px #00ffd1;
+          box-shadow: 0px 0px 20px #00ffd1, 0px 0px 5px #ffffff, 0px 0px 10px #00ffd1, 0px 0px 10px #00ffd1, 0px 0px 10px #00ffd1, 0px 0px 10px #00ffd1;
+  -webkit-filter: blur(3px);
+          filter: blur(3px);
 }
 
 .screen .content-app .controls-container {
@@ -410,9 +396,31 @@ body h1 {
   grid-area: 1 / 4 / -1 / 7;
   background-color: #36333a;
   border-radius: 8px;
+  -ms-grid-rows: (1fr)[9];
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template: repeat(9, 1fr)/1fr 1fr 1fr;
+  display: -ms-grid;
+  display: grid;
 }
 
-.screen .content-app .controls-container .cross .horizontal-cross {
+.screen .content-app .controls-container .cross .vertical-cross .top-light-cross {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: 2 / 2;
+}
+
+.screen .content-app .controls-container .cross .vertical-cross .bottom-light-cross {
+  grid-area: -3 / -3;
+}
+
+.screen .content-app .controls-container .cross .light-active {
+  background: #716a7b;
+  -webkit-filter: blur(4px);
+          filter: blur(4px);
+  cursor: pointer;
+}
+
+.screen .content-app .controls-container .horizontal-cross {
   -ms-grid-row: 4;
   -ms-grid-row-span: 3;
   grid-area: 4 / 1 / 7 / -1;

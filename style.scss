@@ -128,45 +128,33 @@ body {
         visibility: hidden;
       }
 
-      .container-infos {
-        background: rgba(22, 22, 24, 0.5);
-        position: absolute;
-        height: 265px;
-        width: 265px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 30px;
-        font-family: "5x5 Pixel", sans-serif;
-        color: white;
-        display: grid;
-        grid-template: 40px auto 10px auto 20px auto 1fr / 20px auto;
-
-        h1 {
-          font-size: 1rem;
-          grid-area: 2 / 2;
-        }
-
-        h2 {
-          grid-area: 4 / 2;
-          font-size: 0.8rem;
-        }
-
-        ul {
-          list-style: none;
-          font-size: 0.8rem;
-          grid-area: 6 / 2;
-          padding: 0;
-          margin: 0;
-        }
-      }
-
-      .container-img-pokemon {
+      .container-pokemon {
         display: grid;
         place-content: center;
+        font-family: "5x5 pixel", sans-serif;
+        color: white;
+        text-align: center;
+        line-height: 1.1;
 
         .pokemon-home {
           max-width: 125px;
+        }
+
+        img {
+          margin-bottom: 10px;
+        }
+
+        .info-pokemon-profil {
+          margin-top: 10px;
+        }
+
+        h2,
+        h3 {
+          font-size: 0.8rem;
+        }
+
+        h3 {
+          color: #ffd823;
         }
       }
 
@@ -189,15 +177,8 @@ body {
         .item-list-pokemon.is-active,
         .active {
           background-color: #d35d5d;
+          outline: none;
         }
-
-        .item-list-pokemon.not-active {
-          background-color: #fff;
-        }
-
-        // .item-list-pokemon:nth-of-type(1) {
-        //   background-color: #161618;
-        // }
 
         p {
           grid-area: 1 / 2;
@@ -205,6 +186,7 @@ body {
           color: white;
           font-family: "5x5 Pixel", sans-serif;
           font-size: 0.8rem;
+          word-spacing: 5px;
         }
 
         img {
@@ -235,8 +217,17 @@ body {
         .intern-cercle-pokeball {
           grid-area: 2 / 2 / 5 / 5;
           border-radius: 100%;
-          border: solid 6px #d2e8f5;
+          border: solid 4px #fff;
           box-sizing: border-box;
+        }
+
+        .light-cercle-pokeball {
+          border: 6px solid #359de8;
+          box-sizing: border-box;
+          box-shadow: 0px 0px 20px #00ffd1, 0px 0px 5px #ffffff,
+            0px 0px 10px #00ffd1, 0px 0px 10px #00ffd1, 0px 0px 10px #00ffd1,
+            0px 0px 10px #00ffd1;
+          filter: blur(3px);
         }
       }
     }
@@ -303,12 +294,27 @@ body {
           grid-area: 1 / 4 / -1 / 7;
           background-color: #36333a;
           border-radius: 8px;
+          grid-template: repeat(9, 1fr) / 1fr 1fr 1fr;
+          display: grid;
+
+          .top-light-cross {
+            grid-area: 2 / 2;
+          }
+          .bottom-light-cross {
+            grid-area: -3 / -3;
+          }
         }
-        .horizontal-cross {
-          grid-area: 4 / 1 / 7 / -1;
-          background-color: #36333a;
-          border-radius: 8px;
+        .light-active {
+          background: #716a7b;
+          filter: blur(4px);
+          cursor: pointer;
         }
+      }
+
+      .horizontal-cross {
+        grid-area: 4 / 1 / 7 / -1;
+        background-color: #36333a;
+        border-radius: 8px;
       }
     }
   }
