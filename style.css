@@ -192,10 +192,6 @@ body h1 {
   font-size: 0.8rem;
 }
 
-.screen .content-app .monitor .pokemon-profil .info-pokemon-profil .type-profil {
-  color: #ffd823;
-}
-
 .screen .content-app .monitor .list-pokemon {
   overflow: scroll;
   overflow-x: hidden;

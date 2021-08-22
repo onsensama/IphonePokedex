@@ -7,6 +7,25 @@ const audioInput = new Audio("./assets/sound/press_1.mp3");
 const containerPokemon = document.querySelector(".container-pokemon");
 const pokemonProfil = document.querySelector(".pokemon-profil");
 
+const colorTypes = {
+  grass: "#78c850",
+  ground: "#E2BF65",
+  dragon: "#6F35FC",
+  fire: "#F58271",
+  electric: "#F7D02C",
+  fairy: "#D685AD",
+  poison: "#966DA3",
+  bug: "#B3F594",
+  water: "#6390F0",
+  normal: "#D9D5D8",
+  psychic: "#F95587",
+  flying: "#A98FF3",
+  fighting: "#C25956",
+  rock: "#B6A136",
+  ghost: "#735797",
+  ice: "#96D9D6",
+};
+
 function fetchPokemonData() {
   fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
     .then((res) => res.json())
@@ -68,9 +87,11 @@ function createItemList(pokemonsInfos) {
       const imgProfil = document.querySelector(".img-profil");
       const name = document.querySelector(".name-profil");
       const type = document.querySelector(".type-profil");
-      imgProfil.src = pokemonsInfos[itemList.id].img || "";
-      name.innerText = pokemonsInfos[itemList.id].name || "";
-      type.innerText = pokemonsInfos[itemList.id].type || "";
+      imgProfil.src = pokemonsInfos[i].img || "";
+      name.innerText = pokemonsInfos[i].name || "";
+      type.innerText = pokemonsInfos[i].type || "";
+      let dynamicColor = colorTypes[pokemonsInfos[i].type];
+      type.style.color = dynamicColor;
     });
   }
 }
