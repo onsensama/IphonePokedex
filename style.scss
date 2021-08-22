@@ -7,7 +7,7 @@
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 @font-face {
@@ -128,7 +128,7 @@ body {
         visibility: hidden;
       }
 
-      .container-pokemon {
+      .pokemon-profil {
         display: grid;
         place-content: center;
         font-family: "5x5 pixel", sans-serif;
@@ -140,21 +140,14 @@ body {
           max-width: 125px;
         }
 
-        img {
-          margin-bottom: 10px;
-        }
-
         .info-pokemon-profil {
-          margin-top: 10px;
-        }
-
-        h2,
-        h3 {
-          font-size: 0.8rem;
-        }
-
-        h3 {
-          color: #ffd823;
+          .name-profil,
+          .type-profil {
+            font-size: 0.8rem;
+          }
+          .type-profil {
+            color: #ffd823;
+          }
         }
       }
 
@@ -212,21 +205,19 @@ body {
         grid-area: 1 / 2 / 4 / 3;
         border-radius: 100%;
         display: grid;
-        grid-template: repeat(5, 1fr) / repeat(5, 1fr);
+        grid-template: repeat(10, 1fr) / repeat(10, 1fr);
 
         .intern-cercle-pokeball {
-          grid-area: 2 / 2 / 5 / 5;
+          grid-area: 4 / 4 / 8 / 8;
           border-radius: 100%;
           border: solid 4px #fff;
           box-sizing: border-box;
         }
 
         .light-cercle-pokeball {
-          border: 6px solid #359de8;
-          box-sizing: border-box;
-          box-shadow: 0px 0px 20px #00ffd1, 0px 0px 5px #ffffff,
-            0px 0px 10px #00ffd1, 0px 0px 10px #00ffd1, 0px 0px 10px #00ffd1,
-            0px 0px 10px #00ffd1;
+          background: #ffffff;
+          box-shadow: 0px 0px 10px #ffb800, 0px 0px 10px #d8b60e,
+            0px 0px 10px #4e4115;
           filter: blur(3px);
         }
       }
@@ -263,6 +254,9 @@ body {
         text-align: center;
         vertical-align: middle;
         line-height: 25px;
+        &:hover {
+          background-color: #514b58;
+        }
       }
 
       .button-back {
@@ -302,6 +296,12 @@ body {
           }
           .bottom-light-cross {
             grid-area: -3 / -3;
+          }
+          .top-light-cross:hover,
+          .bottom-light-cross:hover {
+            background: #716a7b;
+            filter: blur(4px);
+            cursor: pointer;
           }
         }
         .light-active {

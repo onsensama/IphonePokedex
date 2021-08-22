@@ -20,23 +20,21 @@
             <h1 class="title-app">Pokedex 2.0</h1>
             <div class="monitor">
               <div class="list-pokemon hide" tabindex="0"></div>
-              <div class="container-pokemon">
-                <!-- <img
-                  src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c325.png"
-                  class="pokemon-home"
-                  alt="pokemon"
-                />
+              <div class="pokemon-profil hide">
+                <img src="" class="img-profil" alt="pokemon" />
                 <div class="info-pokemon-profil">
-                  <h2>Pikachu</h2>
-                  <h3>Electric</h3>
-                </div> -->
+                  <h2 class="name-profil"></h2>
+                  <h3 class="type-profil"></h3>
+                </div>
               </div>
             </div>
 
             <div class="pokeball-effect">
               <div class="line-pokeball"></div>
               <div class="cercle-pokeball">
-                <div class="intern-cercle-pokeball"></div>
+                <div
+                  class="intern-cercle-pokeball light-cercle-pokeball-off"
+                ></div>
               </div>
             </div>
             <div class="controls-container">
@@ -72,6 +70,7 @@
                 id="name"
                 name="name"
                 class="search-pokemon"
+                disabled
               />
             </div>
           </div>
