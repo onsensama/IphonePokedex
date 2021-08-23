@@ -237,6 +237,9 @@ body {
         border-radius: 100%;
         display: grid;
         place-content: center;
+        &:hover {
+          background-color: #514b58;
+        }
       }
 
       .button-back,

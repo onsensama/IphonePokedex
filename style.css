@@ -322,6 +322,10 @@ body h1 {
   place-content: center;
 }
 
+.screen .content-app .controls-container .button-start-pokedex:hover {
+  background-color: #514b58;
+}
+
 .screen .content-app .controls-container .button-back,
 .screen .content-app .controls-container .button-enter {
   background-color: #36333a;
