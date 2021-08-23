@@ -10,6 +10,7 @@ const startSound = new Audio("./assets/sound/start.mp3");
 const offSound = new Audio("./assets/sound/off.mp3");
 const enterBackSound = new Audio("./assets/sound/enter.mp3");
 const selectSound = new Audio("./assets/sound/select.mp3");
+const buttonEnter = document.querySelector(".button-enter");
 
 const colorTypes = {
   grass: "#78c850",
@@ -85,7 +86,7 @@ function createItemList(pokemonsInfos) {
     const firstItem = document.querySelector(".item-list-pokemon");
     firstItem.classList.add("active");
 
-    function displayPokemon() {
+    itemList.addEventListener("click", function () {
       listPokemon.classList.add("hide");
       pokemonProfil.classList.remove("hide");
       const imgProfil = document.querySelector(".img-profil");
@@ -101,79 +102,59 @@ function createItemList(pokemonsInfos) {
       );
       audioPokemon.volume = 0.1;
       soundPlay(audioPokemon);
+    });
+
+    function displayPokemon() {
+      const ActivePokemon = document.querySelector(".active");
+
+      listPokemon.classList.add("hide");
+      pokemonProfil.classList.remove("hide");
+
+      const imgProfil = document.querySelector(".img-profil");
+      const name = document.querySelector(".name-profil");
+      const type = document.querySelector(".type-profil");
+      imgProfil.src = pokemonsInfos[Number(ActivePokemon.id - 1)].img || "";
+      name.innerText = pokemonsInfos[Number(ActivePokemon.id - 1)].name || "";
+      type.innerText = pokemonsInfos[Number(ActivePokemon.id - 1)].type || "";
+      let dynamicColor =
+        colorTypes[pokemonsInfos[Number(ActivePokemon.id - 1)].type];
+      type.style.color = dynamicColor;
+      const audioPokemon = new Audio(
+        `./assets/sound/cries_pokemon/${Number(ActivePokemon.id)}.ogg`
+      );
+      audioPokemon.volume = 0.1;
+      soundPlay(audioPokemon);
     }
 
-    itemList.addEventListener("click", function () {
-      displayPokemon();
-    });
-
-    const buttonEnter = document.querySelector(".button-enter");
-
     buttonEnter.addEventListener("click", function () {
-      const ActivePokemon = document.querySelector(".active");
-      const lightCerclePokemon = document.querySelector(
-        ".light-cercle-pokeball"
-      );
-      const pokemonProfilHide = pokemonProfil.classList.value;
-
       if (
         lightCerclePokemon !== null &&
         pokemonProfilHide === "pokemon-profil hide"
       ) {
-        listPokemon.classList.add("hide");
-        pokemonProfil.classList.remove("hide");
-
-        const imgProfil = document.querySelector(".img-profil");
-        const name = document.querySelector(".name-profil");
-        const type = document.querySelector(".type-profil");
-        imgProfil.src = pokemonsInfos[Number(ActivePokemon.id - 1)].img || "";
-        name.innerText = pokemonsInfos[Number(ActivePokemon.id - 1)].name || "";
-        type.innerText = pokemonsInfos[Number(ActivePokemon.id - 1)].type || "";
-        let dynamicColor =
-          colorTypes[pokemonsInfos[Number(ActivePokemon.id - 1)].type];
-        type.style.color = dynamicColor;
-        const audioPokemon = new Audio(
-          `./assets/sound/cries_pokemon/${Number(ActivePokemon.id)}.ogg`
-        );
-        audioPokemon.volume = 0.1;
-        soundPlay(audioPokemon);
+        displayPokemon();
       }
     });
+
     document.addEventListener("keydown", function (e) {
-      const ActivePokemon = document.querySelector(".active");
       const lightCerclePokemon = document.querySelector(
         ".light-cercle-pokeball"
       );
       const pokemonProfilHide = pokemonProfil.classList.value;
-      console.log(e.key);
-      if (
-        e.key === "Enter" &&
-        lightCerclePokemon !== null &&
-        pokemonProfilHide === "pokemon-profil hide"
-      ) {
-        listPokemon.classList.add("hide");
-        pokemonProfil.classList.remove("hide");
-
-        const imgProfil = document.querySelector(".img-profil");
-        const name = document.querySelector(".name-profil");
-        const type = document.querySelector(".type-profil");
-        imgProfil.src = pokemonsInfos[Number(ActivePokemon.id - 1)].img || "";
-        name.innerText = pokemonsInfos[Number(ActivePokemon.id - 1)].name || "";
-        type.innerText = pokemonsInfos[Number(ActivePokemon.id - 1)].type || "";
-        let dynamicColor =
-          colorTypes[pokemonsInfos[Number(ActivePokemon.id - 1)].type];
-        type.style.color = dynamicColor;
-        const audioPokemon = new Audio(
-          `./assets/sound/cries_pokemon/${Number(ActivePokemon.id)}.ogg`
-        );
-        audioPokemon.volume = 0.1;
-        soundPlay(audioPokemon);
+      if (lightCerclePokemon !== null) {
+        if (e.key === "Enter") {
+          displayPokemon();
+        }
+        if (e.key === "Backspace") {
+          console.log("ee");
+          listPokemon.classList.remove("hide");
+          pokemonProfil.classList.add("hide");
+        }
       }
     });
   }
 }
 
-function keyboardNagigation() {
+function keyboardUpDownList() {
   document.addEventListener("keydown", function (e) {
     const active = document.querySelector(".active");
     const nextActive = Number(active.id) + 1;
@@ -192,7 +173,7 @@ function keyboardNagigation() {
         if (nextItem !== null) {
           active.classList.remove("active");
           nextItem.classList.add("active");
-          listPokemon.focus();
+          nextItem.scrollIntoView();
           const bottomLightActive = document.querySelector(
             ".bottom-light-cross"
           );
@@ -214,7 +195,7 @@ function keyboardNagigation() {
         if (previousItem !== null) {
           active.classList.remove("active");
           previousItem.classList.add("active");
-          listPokemon.focus();
+          previousItem.scrollIntoView();
           const topLightActive = document.querySelector(".top-light-cross");
           topLightActive.classList.add("light-active");
           setTimeout(() => {
@@ -225,7 +206,7 @@ function keyboardNagigation() {
     }
   });
 }
-keyboardNagigation();
+keyboardUpDownList();
 
 function SwitchOnOff() {
   const buttonStart = document.querySelector(".button-start-pokedex");
@@ -242,8 +223,8 @@ function SwitchOnOff() {
       active.classList.remove("active");
       pokeSearch.removeAttribute("disabled");
       firstItem.classList.add("active");
-      firstItem.tabIndex = 0;
-      firstItem.focus();
+      // firstItem.tabIndex = 0;
+      firstItem.scrollIntoView();
       soundPlay(startSound);
     } else if (lightCerclePokemon !== null) {
       listPokemon.classList.add("hide");
