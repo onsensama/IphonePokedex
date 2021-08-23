@@ -6,6 +6,10 @@ const pokeSearch = document.querySelector(".search-pokemon");
 const audioInput = new Audio("./assets/sound/press_1.mp3");
 const containerPokemon = document.querySelector(".container-pokemon");
 const pokemonProfil = document.querySelector(".pokemon-profil");
+const startSound = new Audio("./assets/sound/start.mp3");
+const offSound = new Audio("./assets/sound/off.mp3");
+const enterBackSound = new Audio("./assets/sound/enter.mp3");
+const selectSound = new Audio("./assets/sound/select.mp3");
 
 const colorTypes = {
   grass: "#78c850",
@@ -81,7 +85,7 @@ function createItemList(pokemonsInfos) {
     const firstItem = document.querySelector(".item-list-pokemon");
     firstItem.classList.add("active");
 
-    itemList.addEventListener("click", function (e) {
+    function displayPokemon() {
       listPokemon.classList.add("hide");
       pokemonProfil.classList.remove("hide");
       const imgProfil = document.querySelector(".img-profil");
@@ -92,6 +96,79 @@ function createItemList(pokemonsInfos) {
       type.innerText = pokemonsInfos[i].type || "";
       let dynamicColor = colorTypes[pokemonsInfos[i].type];
       type.style.color = dynamicColor;
+      const audioPokemon = new Audio(
+        `./assets/sound/cries_pokemon/${itemList.id}.ogg`
+      );
+      audioPokemon.volume = 0.1;
+      soundPlay(audioPokemon);
+    }
+
+    itemList.addEventListener("click", function () {
+      displayPokemon();
+    });
+
+    const buttonEnter = document.querySelector(".button-enter");
+
+    buttonEnter.addEventListener("click", function () {
+      const ActivePokemon = document.querySelector(".active");
+      const lightCerclePokemon = document.querySelector(
+        ".light-cercle-pokeball"
+      );
+      const pokemonProfilHide = pokemonProfil.classList.value;
+
+      if (
+        lightCerclePokemon !== null &&
+        pokemonProfilHide === "pokemon-profil hide"
+      ) {
+        listPokemon.classList.add("hide");
+        pokemonProfil.classList.remove("hide");
+
+        const imgProfil = document.querySelector(".img-profil");
+        const name = document.querySelector(".name-profil");
+        const type = document.querySelector(".type-profil");
+        imgProfil.src = pokemonsInfos[Number(ActivePokemon.id - 1)].img || "";
+        name.innerText = pokemonsInfos[Number(ActivePokemon.id - 1)].name || "";
+        type.innerText = pokemonsInfos[Number(ActivePokemon.id - 1)].type || "";
+        let dynamicColor =
+          colorTypes[pokemonsInfos[Number(ActivePokemon.id - 1)].type];
+        type.style.color = dynamicColor;
+        const audioPokemon = new Audio(
+          `./assets/sound/cries_pokemon/${Number(ActivePokemon.id)}.ogg`
+        );
+        audioPokemon.volume = 0.1;
+        soundPlay(audioPokemon);
+      }
+    });
+    document.addEventListener("keydown", function (e) {
+      const ActivePokemon = document.querySelector(".active");
+      const lightCerclePokemon = document.querySelector(
+        ".light-cercle-pokeball"
+      );
+      const pokemonProfilHide = pokemonProfil.classList.value;
+      console.log(e.key);
+      if (
+        e.key === "Enter" &&
+        lightCerclePokemon !== null &&
+        pokemonProfilHide === "pokemon-profil hide"
+      ) {
+        listPokemon.classList.add("hide");
+        pokemonProfil.classList.remove("hide");
+
+        const imgProfil = document.querySelector(".img-profil");
+        const name = document.querySelector(".name-profil");
+        const type = document.querySelector(".type-profil");
+        imgProfil.src = pokemonsInfos[Number(ActivePokemon.id - 1)].img || "";
+        name.innerText = pokemonsInfos[Number(ActivePokemon.id - 1)].name || "";
+        type.innerText = pokemonsInfos[Number(ActivePokemon.id - 1)].type || "";
+        let dynamicColor =
+          colorTypes[pokemonsInfos[Number(ActivePokemon.id - 1)].type];
+        type.style.color = dynamicColor;
+        const audioPokemon = new Audio(
+          `./assets/sound/cries_pokemon/${Number(ActivePokemon.id)}.ogg`
+        );
+        audioPokemon.volume = 0.1;
+        soundPlay(audioPokemon);
+      }
     });
   }
 }
@@ -102,10 +179,6 @@ function keyboardNagigation() {
     const nextActive = Number(active.id) + 1;
     const previousActive = Number(active.id) - 1;
     const lightCerclePokemon = document.querySelector(".light-cercle-pokeball");
-    const audioPokemon = new Audio(
-      `./assets/sound/cries_pokemon/${nextActive}.ogg`
-    );
-    audioPokemon.volume = 0.1;
     const pokemonProfilHide = pokemonProfil.classList.value;
 
     if (
@@ -115,7 +188,7 @@ function keyboardNagigation() {
     ) {
       if (active !== null) {
         const nextItem = document.getElementById(nextActive);
-        soundPlay(audioPokemon);
+        soundPlay(selectSound);
         if (nextItem !== null) {
           active.classList.remove("active");
           nextItem.classList.add("active");
@@ -137,6 +210,7 @@ function keyboardNagigation() {
     ) {
       if (active !== null) {
         const previousItem = document.getElementById(previousActive);
+        soundPlay(selectSound);
         if (previousItem !== null) {
           active.classList.remove("active");
           previousItem.classList.add("active");
@@ -170,12 +244,14 @@ function SwitchOnOff() {
       firstItem.classList.add("active");
       firstItem.tabIndex = 0;
       firstItem.focus();
+      soundPlay(startSound);
     } else if (lightCerclePokemon !== null) {
       listPokemon.classList.add("hide");
       cerclePokeball.classList.remove("light-cercle-pokeball");
       pokeSearch.setAttribute("disabled", "disabled");
       pokeSearch.value = "";
       pokemonProfil.classList.add("hide");
+      soundPlay(offSound);
     }
   });
 }
@@ -193,5 +269,3 @@ function soundPlay(audio) {
   audio.currentTime = 0;
   audio.play();
 }
-
-function displayPokemon() {}
