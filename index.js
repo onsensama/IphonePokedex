@@ -166,7 +166,6 @@ function navListPokemon(pokemonsInfos) {
       lightCerclePokemon !== null &&
       pokemonProfilHide === "pokemon-profil hide"
     ) {
-      console.log("test");
       displayPokemon(pokemonsInfos);
       const audioPokemon = new Audio(
         `./assets/sound/cries_pokemon/${Number(ActivePokemon.id)}.ogg`
