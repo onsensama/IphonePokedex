@@ -1,4 +1,6 @@
-# V-00
+# Vanilla-Pokedex
+
+A version of a pokedex for Iphone in 2021 
 
 - Install modules with npm i in your terminal
 - Download live sass compiler extension on vscode for read scss
