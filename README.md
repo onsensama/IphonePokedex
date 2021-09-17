@@ -1,4 +1,4 @@
-# Vanilla-Pokedex
+# IphonePokedex
 
 A version of a pokedex for Iphone in 2021 
 
